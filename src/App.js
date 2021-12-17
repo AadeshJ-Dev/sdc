@@ -1,21 +1,25 @@
-
 import Home from './component/Home';
-import About from './component/About';
-import Nav from './component/Nav';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './component/Login';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import GuestRoute from './Routes/GuestRoute';
+import UserRoute from './Routes/UserRoute';
+import './App.css';
+
 function App() {
   return (
-    <div>
     <Router>
-      <Nav />
-      <Routes>
-        <Route path='/home' element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/' element={<Home />} />
-      </Routes>
+      <Route component={RouteComponent}></Route>
     </Router>
-  </div>
   );
 }
+const RouteComponent = () => {
+  return (
+    <Switch>
+      <GuestRoute path='/login' exact component={Login} />
+      <UserRoute exact path='/home' component={Home} />
+      <UserRoute path='/' component={Home} />
+    </Switch>
+  );
+};
 
 export default App;
