@@ -6,7 +6,7 @@ import axios from 'axios';
 
 export default function Home() {
   const [usersList, setUsersList] = useState('');
-  const [results, setResults] = useState(500);
+  const [results] = useState(500);
 
   const getUserList = async () => {
     try {
