@@ -3,7 +3,6 @@ import Nav from './Nav'
 import styled from "styled-components";
 import axios from 'axios';
 
-
 export default function Home() {
   const [usersList, setUsersList] = useState('');
   const [results] = useState(500);
