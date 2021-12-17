@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Nav from './Nav'
 import styled from "styled-components";
 import axios from 'axios';
+import useGetUserList from './useGetUserList'
 
 export default function Home() {
   const [usersList, setUsersList] = useState('');
