@@ -11,9 +11,9 @@ export default function Nav() {
   }
 
   return (
-    <div style={{ padding: "10px", backgroundColor: "#007bff", color: "#fff", overflow:'auto' }}>
-       <Link style={{ float:'left', width: "90%"  }} to='/'><img src={logo} alt='logo' /></Link>
-      <p onClick={logoutHandler} style={{ cursor: "pointer" }}>Logout</p>
+    <div style={{ padding: "10px 40px", backgroundColor: "#007bff", color: "#fff", display: "flex", alignItems: "center", justifyContent: "space-between", }}>
+      <Link to='/'><img src={logo} alt='logo' /></Link>
+      <h3 onClick={logoutHandler} style={{ cursor: "pointer" }}>Logout</h3>
     </div>
   )
 }

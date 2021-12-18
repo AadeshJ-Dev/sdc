@@ -1,6 +1,6 @@
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './component/Home';
 import Login from './component/Login';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import GuestRoute from './Routes/GuestRoute';
 import UserRoute from './Routes/UserRoute';
 import './App.css';

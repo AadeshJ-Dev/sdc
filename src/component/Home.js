@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useRef, useCallback } from 'react'
 import Nav from './Nav'
-import styled from "styled-components";
-import axios from 'axios';
+import "./styles.css"
 import useGetUserList from './useGetUserList'
 
 export default function Home() {
-  // const [usersList, setUsersList] = useState('');
   const [results, setResults] = useState(40);
 
   const {
@@ -28,77 +26,36 @@ export default function Home() {
     if (node) observer.current.observe(node)
   }, [loading, hasMore])
 
-  // const getUserList = async () => {
-  //   try {
-  //     const clearResponse = await axios.get(`https://randomuser.me/api/?results=${results}`);
-  //     setUsersList(clearResponse.data.results)
-  //   }
-  //   catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getUserList();
-  // }, [results])
-
   return (
     <>
       <Nav />
-      <HomeContainer>
+      <div className="user_container">
         <ul>
           {usersList && usersList.map((eachUser, index) => {
             if (usersList.length === index + 1) {
               return (
                 <li ref={lastUserElementRef} key={eachUser.cell}>
-                  <p>{eachUser.name.first + ' ' + eachUser.name.last}</p>
-                  <p><img src={eachUser.picture.thumbnail} alt={eachUser.name.first + ' ' + eachUser.name.last} /></p>
-                </li>
+                  <img src={eachUser.picture.thumbnail} alt={eachUser.name.first + ' ' + eachUser.name.last} />
+                  <div className="user_details">
+                    <p style={{ fontWeight: "bold" }}>{eachUser.name.first + ' ' + eachUser.name.last}</p>
+                    <p style={{ marginTop: "2px" }}>{eachUser.email}</p>
+                  </div> </li>
               )
             } else {
               return (
                 <li key={eachUser.cell}>
-                  <p>{eachUser.name.first + ' ' + eachUser.name.last}</p>
-                  <p><img src={eachUser.picture.thumbnail} alt={eachUser.name.first + ' ' + eachUser.name.last} /></p>
-                </li>
+                  <img src={eachUser.picture.thumbnail} alt={eachUser.name.first + ' ' + eachUser.name.last} />
+                  <div className="user_details">
+                    <p style={{ fontWeight: "bold" }}>{eachUser.name.first + ' ' + eachUser.name.last}</p>
+                    <p style={{ marginTop: "2px" }}>{eachUser.email}</p>
+                  </div></li>
               )
             }
-
           })}
-
         </ul>
         <div>{loading && 'Loading...'}</div>
         <div>{error && 'Error'}</div>
-      </HomeContainer>
+      </div>
     </>
   )
 }
-
-const HomeContainer = styled.div`
-ul{
-  padding : 20px;
-  list-style : none;
-  overflow:auto;
-  li{ 
-    padding: 10px;
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
-    overflow:auto;
-    float:left;
-    width:25%;
-    p{
-      float:left;
-      img{
-        border: 1px solid #ccc;
-        border-radius: 50%;
-      }
-    }
-    p:nth-child(even){
-      width : 20%
-    }
-    p:nth-child(odd){
-      width : 80%
-    }
-  }
-}
-`

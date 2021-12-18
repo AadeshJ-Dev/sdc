@@ -10,7 +10,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState(null);
   const history = useHistory();
-  
+
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     const validationResponse = loginValidations(email, password);
@@ -33,6 +33,7 @@ export default function Login() {
           <form className="login" onSubmit={onSubmitHandler}>
             <div className="login__field">
               <div>
+                <i class="login__icon fas fa-user"></i>
                 <input
                   type="text"
                   className='formControl form-control login__input'
@@ -43,7 +44,7 @@ export default function Login() {
                 />
               </div>
               {errors && errors.email ? (
-                <InlineError text={errors.email} color="#fff" />
+                <InlineError text={errors.email} />
               ) : (
                 ''
               )}
@@ -61,7 +62,7 @@ export default function Login() {
                 />
               </div>
               {errors && errors.password ? (
-                <InlineError text={errors.password} color="#fff" />
+                <InlineError text={errors.password} />
               ) : (
                 ''
               )}
@@ -74,9 +75,6 @@ export default function Login() {
 
         </div>
         <div className="screen__background">
-          <span className="screen__background__shape screen__background__shape4"></span>
-          <span className="screen__background__shape screen__background__shape3"></span>
-          <span className="screen__background__shape screen__background__shape2"></span>
           <span className="screen__background__shape screen__background__shape1"></span>
         </div>
       </div>

@@ -7,8 +7,6 @@ export default function useGetUserList(results) {
   const [usersList, setUsersList] = useState([])
   const [hasMore, setHasMore] = useState(false)
 
-
-
   useEffect(() => {
     setLoading(true)
     setError(false)
@@ -16,7 +14,6 @@ export default function useGetUserList(results) {
     axios({
       method: 'GET',
       url: `https://randomuser.me/api/?results=${results}`,
-      // params: {results: results },
       cancelToken: new axios.CancelToken(c => cancel = c)
     }).then(res => {
       setUsersList(prevUsers => {
