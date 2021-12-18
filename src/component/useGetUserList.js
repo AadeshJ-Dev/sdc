@@ -1,15 +1,13 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-export default function useGetUserList(query, results) {
+export default function useGetUserList(results) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const [usersList, setUsersList] = useState([])
   const [hasMore, setHasMore] = useState(false)
 
-  useEffect(() => {
-    setUsersList([])
-  }, [query])
+
 
   useEffect(() => {
     setLoading(true)
@@ -18,11 +16,11 @@ export default function useGetUserList(query, results) {
     axios({
       method: 'GET',
       url: `https://randomuser.me/api/?results=${results}`,
-      params: {results: results },
+      // params: {results: results },
       cancelToken: new axios.CancelToken(c => cancel = c)
     }).then(res => {
       setUsersList(prevUsers => {
-        return [...new Set([...prevUsers, ...res.data.results.map(b => b.name)])]
+        return [...new Set([...prevUsers, ...res.data.results])]
       })
       setHasMore(res.data.results.length > 0)
       setLoading(false)
@@ -31,7 +29,7 @@ export default function useGetUserList(query, results) {
       setError(true)
     })
     return () => cancel()
-  }, [query, results])
+  }, [results])
 
   return { loading, error, usersList, hasMore }
 }
