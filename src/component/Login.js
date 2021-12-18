@@ -3,6 +3,7 @@ import { loginValidations } from '../validations/loginValidations'
 import * as config from '../config/config'
 import InlineError from "../Helpers/InlineError";
 import { useHistory } from "react-router-dom";
+import logo from '../shaadi.png';
 
 export default function Login() {
 
@@ -75,6 +76,14 @@ export default function Login() {
 
         </div>
         <div className="screen__background">
+          <p
+            style={{
+              color: " #000",
+              position: "absolute",
+              top: "25px",
+              right: "30px",
+            }}
+          ><img src={logo} alt='logo' /></p>
           <span className="screen__background__shape screen__background__shape1"></span>
         </div>
       </div>
